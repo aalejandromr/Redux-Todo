@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addTodo, completeTodo, deleteTodo } from "../../actions";
-import { Grid } from "semantic-ui-react";
+import { Grid, Segment } from "semantic-ui-react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import Todo from "./Todo";
 
@@ -27,9 +27,9 @@ const TodoList = props => {
         <Grid columns={6} centered>
           <Grid.Column>
             <Form.Field>
-              <label>First Name</label>
+              <label>Task Name</label>
               <input
-                placeholder="First Name"
+                placeholder="Task Name"
                 value={taskName}
                 onChange={e => setTaskName(e.target.value)}
               />
@@ -49,17 +49,46 @@ const TodoList = props => {
           </Grid.Column>
         </Grid>
       </Form>
-      <Grid columns="three" divided>
-        <Grid.Row>
-          {props.todos.map((todo, key) => (
-            <Todo
-              key={key}
-              todo={todo}
-              id={key}
-              handleComplete={props.completeTodo}
-              handleDeletation={props.deleteTodo}
-            />
-          ))}
+      <Grid columns={2} divided>
+        <Grid.Row stretched>
+          <Grid.Column>
+            <Segment>
+              <h1> TODOs </h1>
+            </Segment>
+            {
+              props.todos.map((todo, key) => (
+                <Todo
+                  key={key}
+                  todo={todo}
+                  id={key}
+                  handleComplete={props.completeTodo}
+                  handleDeletation={props.deleteTodo}
+                />
+              ))
+            }
+          </Grid.Column>
+          <Grid.Column>
+            {/* <Segment>1</Segment>
+            <Segment>2</Segment>
+            <Segment>2</Segment>
+            <Segment>2</Segment>
+            <Segment>2</Segment>
+            <Segment>2</Segment> */}
+            <Segment>
+              <h1> COMPLETED </h1>
+            </Segment>
+            {
+              props.todos.map((todo, key) => (
+                <Todo
+                  key={key}
+                  todo={todo}
+                  id={key}
+                  handleComplete={props.completeTodo}
+                  handleDeletation={props.deleteTodo}
+                />
+              ))
+            }
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     </>
