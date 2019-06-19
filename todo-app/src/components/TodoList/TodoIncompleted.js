@@ -4,10 +4,9 @@ import styled from "styled-components";
 import { Grid } from "semantic-ui-react";
 import { Button, Icon } from "semantic-ui-react";
 
-const TodoCompleted = props => {
+const TodoIncompleted = props => {
   return (
     <Grid.Column textAlign="center" verticalAlign="middle">
-      <StyledProgressBar percent={100} success />
       <H1 onClick={() => props.handleComplete(props.id)}>{props.todo.value}</H1>
       <SpaceGrid
         color="red"
@@ -38,4 +37,4 @@ const StyledProgressBar = styled(Progress)`
   }
 `;
 
-export default TodoCompleted;
+export default TodoIncompleted;

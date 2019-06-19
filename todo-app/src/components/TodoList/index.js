@@ -4,6 +4,10 @@ import { addTodo, completeTodo, deleteTodo } from "../../actions";
 import { Grid, Segment } from "semantic-ui-react";
 import { Button, Checkbox, Form } from "semantic-ui-react";
 import Todo from "./Todo";
+import TodoCompleted from "./TodoCompleted";
+import TodoIncompleted from "./TodoIncompleted";
+
+const ComponentTodo = Todo(TodoCompleted)(TodoIncompleted);
 
 const TodoList = props => {
   const [taskName, setTaskName] = useState("");
@@ -50,46 +54,15 @@ const TodoList = props => {
         </Grid>
       </Form>
       <Grid columns={2} divided>
-        <Grid.Row stretched>
-          <Grid.Column>
-            <Segment>
-              <h1> TODOs </h1>
-            </Segment>
-            {
-              props.todos.map((todo, key) => (
-                <Todo
-                  key={key}
-                  todo={todo}
-                  id={key}
-                  handleComplete={props.completeTodo}
-                  handleDeletation={props.deleteTodo}
-                />
-              ))
-            }
-          </Grid.Column>
-          <Grid.Column>
-            {/* <Segment>1</Segment>
-            <Segment>2</Segment>
-            <Segment>2</Segment>
-            <Segment>2</Segment>
-            <Segment>2</Segment>
-            <Segment>2</Segment> */}
-            <Segment>
-              <h1> COMPLETED </h1>
-            </Segment>
-            {
-              props.todos.map((todo, key) => (
-                <Todo
-                  key={key}
-                  todo={todo}
-                  id={key}
-                  handleComplete={props.completeTodo}
-                  handleDeletation={props.deleteTodo}
-                />
-              ))
-            }
-          </Grid.Column>
-        </Grid.Row>
+        {props.todos.map((todo, key) => (
+          <ComponentTodo
+            key={key}
+            todo={todo}
+            id={key}
+            handleComplete={props.completeTodo}
+            handleDeletation={props.deleteTodo}
+          />
+        ))}
       </Grid>
     </>
   );
