@@ -16,7 +16,11 @@ const TodoList = props => {
   const addTask = e => {
     e.preventDefault();
     if (taskName !== "") {
-      props.addTodo({ value: taskName, completed: taskCompleted });
+      props.addTodo({
+        id: Date.now(),
+        value: taskName,
+        completed: taskCompleted
+      });
       setTaskName("");
     }
   };
@@ -54,15 +58,12 @@ const TodoList = props => {
         </Grid>
       </Form>
       <Grid columns={2} divided>
-        {props.todos.map((todo, key) => (
-          <ComponentTodo
-            key={key}
-            todo={todo}
-            id={key}
-            handleComplete={props.completeTodo}
-            handleDeletation={props.deleteTodo}
-          />
-        ))}
+        <ComponentTodo
+          todosC={props.todos.filter(todo => todo.completed)}
+          todosI={props.todos.filter(todo => !todo.completed)}
+          handleComplete={props.completeTodo}
+          handleDeletation={props.deleteTodo}
+        />
       </Grid>
     </>
   );

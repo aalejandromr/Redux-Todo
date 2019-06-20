@@ -8,11 +8,13 @@ const TodoCompleted = props => {
   return (
     <Grid.Column textAlign="center" verticalAlign="middle">
       <StyledProgressBar percent={100} success />
-      <H1 onClick={() => props.handleComplete(props.id)}>{props.todo.value}</H1>
+      <H1 onClick={() => props.handleComplete(props.todo.id)}>
+        {props.todo.value}
+      </H1>
       <SpaceGrid
         color="red"
         compact
-        onClick={() => props.handleDeletation(props.id)}
+        onClick={() => props.handleDeletation(props.todo.id)}
       >
         <Icon name="trash" /> Delete
       </SpaceGrid>

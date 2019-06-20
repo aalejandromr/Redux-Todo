@@ -17,25 +17,22 @@ function reducer(state = initialState, action) {
     case COMPLETE_TODO:
       return {
         ...state,
-        todos: state.todos.map((todo, index) => {
-          if(index === action.payload)
-          {
+        todos: state.todos.map(todo => {
+          if (todo.id === action.payload) {
             return {
               ...todo,
               completed: !todo.completed
-            }
-          }
-          else 
-          {
-            return todo
+            };
+          } else {
+            return todo;
           }
         })
-      }
+      };
     case DELETE_TODO:
       return {
         ...state,
-        todos: state.todos.filter((todo, index) => index !== action.payload)
-      }
+        todos: state.todos.filter((todo, index) => todo.id !== action.payload)
+      };
     default:
       return state;
   }

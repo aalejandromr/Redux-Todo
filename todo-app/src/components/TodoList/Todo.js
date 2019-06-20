@@ -5,19 +5,18 @@ const Todo = TodoCompleted => TodoIncompleted =>
   class extends React.Component {
     render() {
       return (
-        <Grid.Row stretched>
+        <Grid.Row>
           <Grid.Column>
             <Segment>
               <h1> TODOs </h1>
             </Segment>
-            {!this.props.todo.completed && (
+            {this.props.todosI.map(todo => (
               <TodoIncompleted
-                todo={this.props.todo}
-                id={this.props.id}
+                todo={todo}
                 handleComplete={this.props.handleComplete}
                 handleDeletation={this.props.handleDeletation}
               />
-            )}
+            ))}
           </Grid.Column>
           <Grid.Column>
             {/* <Segment>1</Segment>
@@ -29,14 +28,13 @@ const Todo = TodoCompleted => TodoIncompleted =>
             <Segment>
               <h1> COMPLETED </h1>
             </Segment>
-            {this.props.todo.completed && (
+            {this.props.todosC.map(todo => (
               <TodoCompleted
-                todo={this.props.todo}
-                id={this.props.id}
+                todo={todo}
                 handleComplete={this.props.handleComplete}
                 handleDeletation={this.props.handleDeletation}
               />
-            )}
+            ))}
           </Grid.Column>
         </Grid.Row>
       );
